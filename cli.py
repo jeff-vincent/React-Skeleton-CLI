@@ -19,7 +19,7 @@ class ComponentCLI:
     def main():
         ComponentCLI.printColor('---------------------------------------------------------------------------------', Color.LAVENDER)
 
-        ComponentCLI.printColor('Welcome to the JSUtils New Component Generator!', Color.GREEN)
+        ComponentCLI.printColor('Welcome to the React-Skeleton New Component Generator!', Color.GREEN)
         ComponentCLI.printColor('This is where you will make decisions about your new component.', Color.GREEN)
         ComponentCLI.printColor('Don\'t worry, though. You can always change things later.', Color.LAVENDER)
 
