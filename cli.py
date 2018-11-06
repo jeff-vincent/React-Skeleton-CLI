@@ -24,14 +24,14 @@ class ComponentCLI:
         ComponentCLI.printColor('Don\'t worry, though. You can always change things later.', Color.LAVENDER)
 
         ComponentCLI.printColor('---------------------------------------------------------------------------------', Color.LAVENDER)
-            
-        ComponentCLI.assign_name(ComponentCLI.name_list)
-        print("Name: " + ComponentCLI.name_list[0])
+        name = ''
+        ComponentCLI.assign_name(name)
+        print("Name: " + name)
         
         ComponentCLI.printColor('---------------------------------------------------------------------------------', Color.LAVENDER)
 
         ComponentCLI.printColor('By default, your new component will extend only the base component.', Color.YELLOW)
-        print('If you know the --RELATIVE-- filepath to a component you would like to extend,')
+        print('If you would like to extend another')
         filepath = str(input('enter the path --TO THE PARENT DIRECTORY-- here: [Skip]'))
         
         if filepath != '':
@@ -39,11 +39,11 @@ class ComponentCLI:
         
         ComponentCLI.printColor('---------------------------------------------------------------------------------', Color.LAVENDER)
         
-        base_list = os.listdir('../components')
+        base_list = os.listdir('./components')
         for item in base_list:
             if not '.' in item and not '_' in item:
                 ComponentCLI.built_in_list.append(item)
-        print('If you would like to extend any of JSUtil\'s included components, select one here: ')
+        print('If you would like to extend one of React-Skeleton\'s included components, select one here: ')
         
         return ComponentCLI.selector(ComponentCLI.counter)
         
@@ -83,5 +83,4 @@ class ComponentCLI:
             ComponentCLI.assign_name(name_list)
         if name == '':
             name = 'GenericComponent'
-            ComponentCLI.name_list.append(name_list)
-        return ComponentCLI.name_list.append(name)
+        return name
