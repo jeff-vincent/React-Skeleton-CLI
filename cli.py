@@ -30,7 +30,7 @@ class ComponentCLI:
         
         ComponentCLI.printColor('---------------------------------------------------------------------------------', Color.LAVENDER)
 
-        ComponentCLI.printColor('By default, your new component will extend only the base component.', Color.YELLOW)
+        ComponentCLI.printColor('By default, your new component will extend React.Component.', Color.YELLOW)
         print('If you would like to extend another')
         filepath = str(input('enter the path --TO THE PARENT DIRECTORY-- here: [Skip]'))
         
@@ -76,11 +76,11 @@ class ComponentCLI:
         
         return print('If all went well, your new component will be in ./src/components/<your-new-compponent>')
        
-    def assign_name(name_list):
+    def assign_name(name):
         name = str(input('What do you want to call your new component? [GenericComponent]'))
         if ' ' in name:
             print('Component names cannot contain spaces.')
-            ComponentCLI.assign_name(name_list)
+            ComponentCLI.assign_name(name)
         if name == '':
             name = 'GenericComponent'
         return name
