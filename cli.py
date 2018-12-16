@@ -26,8 +26,9 @@ class ComponentCLI:
         ComponentCLI.printColor('---------------------------------------------------------------------------------', Color.LAVENDER)
         name = ''
         ComponentCLI.assign_name(name)
-        print("Name: " + name)
-        
+        if name:
+            print("Name: " + name)
+
         ComponentCLI.printColor('---------------------------------------------------------------------------------', Color.LAVENDER)
 
         ComponentCLI.printColor('By default, your new component will extend React.Component.', Color.YELLOW)
@@ -45,13 +46,13 @@ class ComponentCLI:
                 ComponentCLI.built_in_list.append(item)
         print('If you would like to extend one of React-Skeleton\'s included components, select one here: ')
         
-        return ComponentCLI.selector(ComponentCLI.counter)
+        return ComponentCLI.selector(ComponentCLI.counter, name)
         
     built_in_list = []
     noList = []
     counter = 0
     
-    def selector(counter):
+    def selector(counter, name):
         listLimiter = 8
         inheritance_list = []
         root_path = 'components/'
@@ -69,10 +70,10 @@ class ComponentCLI:
             return ComponentCLI.execute_call(name, filepath)
         else:
             ComponentCLI.counter += 1
-            ComponentCLI.selector(counter)
+            ComponentCLI.selector(name, counter)
         
     def execute_call(name, filepath):
-        ComponentCLI.subprocess.call(['./create_component.sh', name,  filepath])
+        subprocess.call(['./new_component.sh', name,  filepath])
         
         return print('If all went well, your new component will be in ./src/components/<your-new-compponent>')
        
@@ -83,4 +84,5 @@ class ComponentCLI:
             ComponentCLI.assign_name(name)
         if name == '':
             name = 'GenericComponent'
+        print("Name: " + name)
         return name
