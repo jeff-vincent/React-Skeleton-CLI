@@ -35,45 +35,46 @@ class ComponentCLI:
         print('If you would like to extend another')
         filepath = str(input('enter the path --TO THE PARENT DIRECTORY-- here: [Skip]'))
         
-        if filepath != '':
+        if filepath == '':
+            filepath = 'components/'
             return ComponentCLI.execute_call(name, filepath)
         
-        ComponentCLI.printColor('---------------------------------------------------------------------------------', Color.LAVENDER)
+    #     ComponentCLI.printColor('---------------------------------------------------------------------------------', Color.LAVENDER)
         
-        base_list = os.listdir('./components')
-        for item in base_list:
-            if not '.' in item and not '_' in item:
-                ComponentCLI.built_in_list.append(item)
-        print('If you would like to extend one of React-Skeleton\'s included components, select one here: ')
+    #     base_list = os.listdir('./components')
+    #     for item in base_list:
+    #         if not '.' in item and not '_' in item:
+    #             ComponentCLI.built_in_list.append(item)
+    #     print('If you would like to extend one of React-Skeleton\'s included components, select one here: ')
         
-        return ComponentCLI.selector(ComponentCLI.counter, name)
+    #     return ComponentCLI.selector(ComponentCLI.counter, name)
         
-    built_in_list = []
-    noList = []
-    counter = 0
+    # built_in_list = []
+    # noList = []
+    # counter = 0
     
-    def selector(counter, name):
-        listLimiter = 8
-        inheritance_list = []
-        root_path = 'components/'
-        selector = str(input(ComponentCLI.built_in_list[ComponentCLI.counter] + ': Y/n [n]'))
-        if selector == 'Y' or selector == 'y':
-            inheritance_list.append(root_path + ComponentCLI.built_in_list[ComponentCLI.counter])
-            filepath = inheritance_list[counter]
-        else:
-            ComponentCLI.noList.append('no')
-        if len(ComponentCLI.noList) > 7:
+    # def selector(counter, name):
+    #     listLimiter = 8
+    #     inheritance_list = []
+    #     root_path = 'components/'
+    #     selector = str(input(ComponentCLI.built_in_list[ComponentCLI.counter] + ': Y/n [n]'))
+    #     if selector == 'Y' or selector == 'y':
+    #         inheritance_list.append(root_path + ComponentCLI.built_in_list[ComponentCLI.counter])
+    #         filepath = inheritance_list[counter]
+    #     else:
+    #         ComponentCLI.noList.append('no')
+    #     if len(ComponentCLI.noList) > 7:
             
-            return ComponentCLI.execute_call(name, filepath)
-        if len(inheritance_list) > 0:
+    #         return ComponentCLI.execute_call(name, filepath)
+    #     if len(inheritance_list) > 0:
         
-            return ComponentCLI.execute_call(name, filepath)
-        else:
-            ComponentCLI.counter += 1
-            ComponentCLI.selector(name, counter)
+    #         return ComponentCLI.execute_call(name, filepath)
+    #     else:
+    #         ComponentCLI.counter += 1
+    #         ComponentCLI.selector(name, counter)
         
     def execute_call(name, filepath):
-        subprocess.call(['./new_component.sh', name,  filepath])
+        subprocess.call(['./new_component.sh', ComponentCLI.name,  filepath])
         
         return print('If all went well, your new component will be in ./src/components/<your-new-compponent>')
        
@@ -83,6 +84,7 @@ class ComponentCLI:
             print('Component names cannot contain spaces.')
             ComponentCLI.assign_name(name)
         if name == '':
-            name = 'GenericComponent'
+            name = 'genericComponent'
         print("Name: " + name)
-        return name
+        ComponentCLI.name = name
+        return ComponentCLI.name
